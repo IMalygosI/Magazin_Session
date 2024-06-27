@@ -1,0 +1,95 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Magazin_New.poickovoe" x:CompileBindings="False" 
+        Title="poickovoe"
+		MaxWidth="900" MaxHeight="750" MinWidth="900" MinHeight="750"
+        WindowStartupLocation="CenterScreen"
+        TransparencyLevelHint="AcrylicBlur">
+	<Panel>
+		<ExperimentalAcrylicBorder IsHitTestVisible="False">
+			<ExperimentalAcrylicBorder.Material>
+				<ExperimentalAcrylicMaterial
+					BackgroundSource="Digger"
+					TintColor="Black"
+					TintOpacity="1"
+					MaterialOpacity="0.15" />
+			</ExperimentalAcrylicBorder.Material>
+		</ExperimentalAcrylicBorder>
+		
+		<Button Name="exit"  Margin="0,0,0,750" 
+		        Foreground="Black" Height="50" Width="145"
+		        HorizontalAlignment="Right" VerticalAlignment="Center" CornerRadius="23">
+			<TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="21">
+				exit
+			</TextBlock>
+		</Button>
+
+		<ListBox Height="500" Width="900" Margin="0 30 0 0" CornerRadius="23"
+		         x:Name="AAA" >
+			<ListBox.ItemTemplate>
+				<DataTemplate >
+					<Border Background="{Binding Color}"
+							BorderThickness="0"
+					        CornerRadius="9"
+							BorderBrush="Black">
+						<Grid ShowGridLines="False">
+							<Grid.ColumnDefinitions >
+								<ColumnDefinition Width="0.1*" />
+								<ColumnDefinition Width="0.3*" />
+								<ColumnDefinition Width="0.088*" />
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="170"></RowDefinition>
+								<RowDefinition Height="Auto"></RowDefinition>
+								<RowDefinition Height="Auto"></RowDefinition>
+							</Grid.RowDefinitions>
+
+							<Border Grid.Column="0" Grid.Row="0" BorderBrush="Black"
+							        BorderThickness="3" CornerRadius="9"></Border>
+							<Border Grid.Column="1" Grid.Row="0" BorderBrush="Black"
+							        BorderThickness="3" CornerRadius="9"></Border>
+							<Border Grid.Column="3" Grid.Row="0" BorderBrush="Black"
+							        BorderThickness="3" CornerRadius="9"></Border>
+
+							<Image VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0"
+								   Width="150" Height="250" Source="{Binding image}"></Image>
+
+							<TextBlock Text="Наименование товара:" HorizontalAlignment="Left" FontWeight="Black"
+									   VerticalAlignment="Top" Grid.Column="1" Margin="10 10 0 0"/>
+							<TextBlock Text="{Binding ProductName}" HorizontalAlignment="Center"
+									   VerticalAlignment="Top" Grid.Column="1" Margin="0 11 0 0"/>
+
+							<TextBlock Text="Описание:"  HorizontalAlignment="Left" Margin="10 0 0 100" FontWeight="Black"
+							           VerticalAlignment="Center" Grid.Column="1"/>
+							<TextBlock Text="{Binding OpisanieProduct}" Width="350" Height="50" Margin="15 0 0 63" HorizontalAlignment="Center"
+							           VerticalAlignment="Center" Grid.Column="1" TextWrapping="Wrap"/>
+							<TextBlock Text="Производитель:"  HorizontalAlignment="Left" Margin="10 10 0 20" FontWeight="Black"
+							           VerticalAlignment="Center" Grid.Column="1"/>
+							<TextBlock Text="{Binding OrganaizProduct}" Margin="0 0 0 7" HorizontalAlignment="Center"
+							           VerticalAlignment="Center" Grid.Column="1" TextWrapping="Wrap"/>
+							<TextBlock Text="Цена:"  HorizontalAlignment="Left" Margin="10 35 0 0" FontWeight="Black"
+									   VerticalAlignment="Center" Grid.Column="1"/>
+							<TextBlock Text="{Binding PraiseProduct}" Margin="0 40 0 0" HorizontalAlignment="Center"
+							           VerticalAlignment="Center" Grid.Column="1" TextWrapping="Wrap"/>
+							<TextBlock Text="Наличие на складе:" HorizontalAlignment="Left" FontWeight="Black"
+							           VerticalAlignment="Center" Margin="10 0 0 100" Grid.Column="2"/>
+							<TextBlock Text="{Binding ColvoProduct}" HorizontalAlignment="Center"
+							           VerticalAlignment="Center" Grid.Column="2"  Margin="0 0 0 50" />
+							<Button Background="#CC5801" Tag="{Binding Id}" HorizontalAlignment="Center" Margin="0 0 0 44" Height="30" Width="150"
+							        VerticalAlignment="Bottom"	Grid.Column="2" Click="basket" Name="basket" Classes="Orange_button">
+								<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">В корзину</TextBlock>
+							</Button>
+							<Button Background="#CC5801" Tag="{Binding Id}" HorizontalAlignment="Center" Height="30" Width="150" Margin="0 0 0 10"
+									   VerticalAlignment="Bottom"	Grid.Column="2" Click="udalit"  Name="udalit" Classes="Orange_button">
+								<TextBlock  VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">Удалить</TextBlock>
+							</Button >
+						</Grid >
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</Panel>
+</Window>

@@ -1,0 +1,141 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Magazin_New.user" x:CompileBindings="False"
+        Title="user"
+        MaxWidth="1280" MaxHeight="854" MinWidth="1280" MinHeight="854"
+        WindowStartupLocation="CenterScreen">
+	<Window.Background>
+		<ImageBrush Source="./Assets/image.jpg"/>
+	</Window.Background>
+	<Panel>
+		<StackPanel>
+			<ComboBox Name="sotirovka2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 77 410 0"
+			          Width="490" Height="45"  FontSize="21" SelectedIndex="0" CornerRadius="11" >
+				<ComboBoxItem FontSize="20">Производитель</ComboBoxItem>
+				<ComboBoxItem FontSize="20">ООО 'Олимп'</ComboBoxItem>
+				<ComboBoxItem FontSize="20">ООО 'Поклоняемся Солнцу!'</ComboBoxItem>
+				<ComboBoxItem FontSize="20">ООО 'Венера'</ComboBoxItem>
+				<ComboBoxItem FontSize="20">ООО 'ЯщеркиТехКорп'</ComboBoxItem>
+			</ComboBox>
+		</StackPanel>
+		<StackPanel>
+			<ComboBox Name="sotirovka3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="490 77 0 0"
+			          Width="400" Height="45"  FontSize="21" SelectedIndex="0" CornerRadius="11" >
+				<ComboBoxItem FontSize="20">Тип продукта</ComboBoxItem>
+				<ComboBoxItem FontSize="20">Техника</ComboBoxItem>
+				<ComboBoxItem FontSize="20">Одежда</ComboBoxItem>
+				<ComboBoxItem FontSize="20">Продукты</ComboBoxItem>
+				<ComboBoxItem FontSize="20">Канцелярия</ComboBoxItem>
+			</ComboBox>
+		</StackPanel>
+		<StackPanel>
+			<TextBox Name="poisk" KeyUp="Searching" Text="" Width="490" Height="45" Margin="0 130 410 0" CornerRadius="11"
+			         Watermark="Название товара" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="21">
+			</TextBox>
+			<ComboBox Name="sotirovka" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="490 -46 0 0"
+			          Width="400" Height="45"  FontSize="21" SelectedIndex="0" CornerRadius="11" >
+				<ComboBoxItem FontSize="20">Цена</ComboBoxItem>
+				<ComboBoxItem FontSize="20">Цена по возрастанию</ComboBoxItem>
+				<ComboBoxItem FontSize="20">Цена по убывнию</ComboBoxItem>
+			</ComboBox>
+		</StackPanel>
+
+		<Button Name="exit"  Margin="0,0,10,650" 
+		        Foreground="Black" Height="40" Width="145"
+		        HorizontalAlignment="Right" VerticalAlignment="Center" CornerRadius="23">
+			<TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="21">
+				exit
+			</TextBlock>
+		</Button>
+		<Button Name="in_korz"  Margin="0,0,10,750" 
+		        Foreground="Black" Height="40" Width="145"
+		        HorizontalAlignment="Right" VerticalAlignment="Center" CornerRadius="23">
+			<TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="21">
+				Корзина
+			</TextBlock>
+		</Button>
+		<Button Name="Reset" Margin="0,0,190,750"  Click="ResetSort"
+		        Background="#CC5801" Height="40" Width="250" Classes="Orange_button"
+		        HorizontalAlignment="Right" VerticalAlignment="Center" CornerRadius="13">
+			<TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="21">
+				Сбросить сортировку
+			</TextBlock>
+		</Button>
+
+
+		<TextBlock Text="Показано товаров:"  HorizontalAlignment="Right" Margin="0,0,905,0"
+		           FontWeight="Black" VerticalAlignment="Top"  FontSize="20" Foreground="White"></TextBlock>
+		<TextBlock Text="из" HorizontalAlignment="Right"				 Margin="0,0,845,0"
+				   FontWeight="Bold" VerticalAlignment="Top" FontSize="20" Foreground="White"></TextBlock>
+
+		<TextBlock  FontSize="20" HorizontalAlignment="Right" Margin="0,0,880,0"
+		            Foreground="White" VerticalAlignment="Top"
+		            x:Name="Colvo" Text="0"></TextBlock>
+		<!-- строка 129 и в sill -->
+		<TextBlock FontSize="20" HorizontalAlignment="Right" Margin="0,0,820,0"
+				   Foreground="White" VerticalAlignment="Top" x:Name="TotalCount" Text="0"/>
+
+
+		<ListBox Height="500" Width="900" Margin="0 30 0 0" CornerRadius="23"
+				 x:Name="AAA">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border Background="{Binding Color}"
+							BorderThickness="0"
+					        CornerRadius="9"
+					        BorderBrush="Black">
+						<Grid ShowGridLines="False">
+							<Grid.ColumnDefinitions >
+								<ColumnDefinition Width="0.1*" />
+								<ColumnDefinition Width="0.3*" />
+								<ColumnDefinition Width="0.088*" />
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="170"></RowDefinition>
+								<RowDefinition Height="Auto"></RowDefinition>
+								<RowDefinition Height="Auto"></RowDefinition>
+							</Grid.RowDefinitions>
+
+							<Border Grid.Column="0" Grid.Row="0" BorderBrush="Black"
+							        BorderThickness="3" CornerRadius="9"></Border>
+							<Border Grid.Column="1" Grid.Row="0" BorderBrush="Black"
+							        BorderThickness="3" CornerRadius="9"></Border>
+							<Border Grid.Column="3" Grid.Row="0" BorderBrush="Black"
+							        BorderThickness="3" CornerRadius="9"></Border>
+
+							<Image VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0"
+								   Width="150" Height="250" Source="{Binding image}"></Image>
+							<TextBlock Text="Наименование товара:" HorizontalAlignment="Left" FontWeight="Black"
+									   VerticalAlignment="Top" Grid.Column="1" Margin="10 10 0 0"/>
+							<TextBlock Text="{Binding ProductName}" HorizontalAlignment="Center"
+									   VerticalAlignment="Top" Grid.Column="1" Margin="0 11 0 0"/>
+							<TextBlock Text="Описание:"  HorizontalAlignment="Left" Margin="10 0 0 100" FontWeight="Black"
+							           VerticalAlignment="Center" Grid.Column="1"/>
+							<TextBlock Text="{Binding OpisanieProduct}" Width="350" Height="50" Margin="15 0 0 63" HorizontalAlignment="Center"
+							           VerticalAlignment="Center" Grid.Column="1" TextWrapping="Wrap"/>
+							<TextBlock Text="Производитель:"  HorizontalAlignment="Left" Margin="10 10 0 20" FontWeight="Black"
+							           VerticalAlignment="Center" Grid.Column="1"/>
+							<TextBlock Text="{Binding OrganaizProduct}" Margin="0 0 0 7" HorizontalAlignment="Center"
+							           VerticalAlignment="Center" Grid.Column="1" TextWrapping="Wrap"/>
+							<TextBlock Text="Цена:"  HorizontalAlignment="Left" Margin="10 35 0 0" FontWeight="Black"
+									   VerticalAlignment="Center" Grid.Column="1"/>
+							<TextBlock Text="{Binding PraiseProduct}" Margin="0 40 0 0" HorizontalAlignment="Center"
+							           VerticalAlignment="Center" Grid.Column="1" TextWrapping="Wrap"/>
+							<TextBlock Text="Наличие на складе:" HorizontalAlignment="Left" FontWeight="Black"
+							           VerticalAlignment="Center" Margin="10 0 0 100" Grid.Column="2"/>
+							<TextBlock Text="{Binding ColvoProduct}" HorizontalAlignment="Center"
+							           VerticalAlignment="Center" Grid.Column="2"  Margin="0 0 0 50" />
+							<Button Background="#CC5801" Tag="{Binding Id}" HorizontalAlignment="Center" Margin="0 0 0 44" Height="30" Width="150"
+							        VerticalAlignment="Bottom"	Grid.Column="2" Click="basket" Name="basket" Classes="Orange_button">
+								<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">В корзину</TextBlock>
+							</Button>
+						</Grid >
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</Panel>
+</Window>

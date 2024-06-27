@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="Magazin_New/admin.axaml" value="Magazin_New/Magazin_New.csproj" />
+        <entry key="Magazin_New/basket.axaml" value="Magazin_New/Magazin_New.csproj" />
+        <entry key="Magazin_New/guest.axaml" value="Magazin_New/Magazin_New.csproj" />
+        <entry key="Magazin_New/poickovoe.axaml" value="Magazin_New/Magazin_New.csproj" />
+        <entry key="Magazin_New/user.axaml" value="Magazin_New/Magazin_New.csproj" />
+      </map>
+    </option>
+  </component>
+</project>
