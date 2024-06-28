@@ -83,7 +83,8 @@
 				 x:Name="AAA">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<Border Background="{Binding Color}"
+					<Border Background="{Binding Color}" 
+							Tag="{Binding Id}"
 							BorderThickness="0"
 					        CornerRadius="9"
 					        BorderBrush="Black">

@@ -41,6 +41,9 @@ public partial class user : Window
         sotirovka2.SelectedIndex = 0;
         sotirovka3.SelectedIndex = 0;
         poisk.Text = "";
+
+        ShopTab.SaveMagaz.vremenno.Clear();
+
         AAA.ItemsSource = ShopTab.SaveMagaz.Product.Select(x => new
         {
             x.ProductName,
@@ -56,6 +59,7 @@ public partial class user : Window
         FiltersTogether();
         ssil("");
     }
+
     private void LBoxInitialization(List<Product> listBoxSource) //Метод для обновления листбокса
     {
         AAA.ItemsSource = ShopTab.SaveMagaz.Product.Select(x => new //обновление лисбокса, в качестве источника - список, принимаемый методом
@@ -301,6 +305,7 @@ public partial class user : Window
     }
     private void ssil(string type)
     {
+        ShopTab.SaveMagaz.vremenno.Clear();
         AAA.ItemsSource = ShopTab.SaveMagaz.Product.Select(x => new {
             x.image,
             x.ProductName,

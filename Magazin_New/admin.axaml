@@ -89,7 +89,8 @@
 		         x:Name="AAA" SelectionChanged="ListBox_SelectionChanged">
 			<ListBox.ItemTemplate>
 				<DataTemplate >
-					<Border Background="{Binding Color}" Tag="{Binding Id}"
+					<Border Background="{Binding Color}"
+							Tag="{Binding Id}"
 							BorderThickness="0"
 					        CornerRadius="9"
 							BorderBrush="Black">

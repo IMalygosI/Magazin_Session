@@ -81,10 +81,11 @@ public partial class admin : Window
     }
     private void FiltersTogether()
     {
+        // Получаем термины поиска и фильтруемый список продуктов
         var searchTerms = poisk.Text.ToLower().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        var productsToFilter = ShopTab.SaveMagaz.vremenno.Any() ? ShopTab.SaveMagaz.vremenno : ShopTab.SaveMagaz.Product;
-        var filteredProducts = productsToFilter.AsEnumerable();
+        var filteredProducts = ShopTab.SaveMagaz.Product.AsEnumerable();
 
+        // Применяем фильтры поиска
         if (searchTerms.Length > 0)
         {
             foreach (var term in searchTerms)
@@ -98,31 +99,28 @@ public partial class admin : Window
             }
         }
 
-        // Сортировка по типу продукта
+        // Применяем фильтры сортировки
         if (sotirovka3.SelectedIndex > 0)
         {
             string selectedTypeProduct = (sotirovka3.SelectedItem as ComboBoxItem).Content.ToString();
             filteredProducts = filteredProducts.Where(p => p.TypeProduct == selectedTypeProduct);
         }
-
-        // Сортировка по производителю
         if (sotirovka2.SelectedIndex > 0)
         {
             string selectedOrganaizProduct = (sotirovka2.SelectedItem as ComboBoxItem).Content.ToString();
             filteredProducts = filteredProducts.Where(p => p.OrganaizProduct == selectedOrganaizProduct);
         }
-
-        // Сортировка по цене
         switch (sotirovka.SelectedIndex)
         {
-            case 1: // по возрастанию цены
+            case 1: // Сортировка по возрастанию цены
                 filteredProducts = filteredProducts.OrderBy(p => p.PraiseProduct);
                 break;
-            case 2: // по убыванию цены
+            case 2: // Сортировка по убыванию цены
                 filteredProducts = filteredProducts.OrderByDescending(p => p.PraiseProduct);
                 break;
         }
 
+        // Обновляем источник данных для списка
         AAA.ItemsSource = filteredProducts.Select(x => new
         {
             x.image,
@@ -136,10 +134,11 @@ public partial class admin : Window
             Color = x.ColvoProduct > 0 ? "CenterScreen" : "Gray"
         }).ToList();
 
-        // Обновление счётчиков товаров
-        Colvo.Text = filteredProducts.Count().ToString(); // показано
-        TotalCount.Text = ShopTab.SaveMagaz.Product.Count.ToString(); // Всего
+        // Обновляем счётчики товаров
+        Colvo.Text = filteredProducts.Count().ToString();
+        TotalCount.Text = ShopTab.SaveMagaz.Product.Count.ToString();
     }
+
     public void Searching(object? sender, Avalonia.Input.KeyEventArgs e)
     {
         var searchTerms = poisk.Text.ToLower().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -397,7 +396,7 @@ public partial class admin : Window
                 File.Delete(Path.Combine("Asset", image));
             }
         }
-    }
+    }    
     public void udalit(object sender, RoutedEventArgs args)
     {
         if (ShopTab.SaveMagaz.korzinaa.Count == 0)
@@ -410,14 +409,12 @@ public partial class admin : Window
                 {
                     ShopTab.SaveMagaz.Product[i].Id = i;
                 }
-                AAA.ItemsSource = ShopTab.SaveMagaz.Product.ToList();
+                FiltersTogether();
             }
-            ssil("");
+            DeleteUnusedImages();
             FiltersTogether();
         }
-        DeleteUnusedImages();
-        UpdateList();
-    }  
+    }
     public void basket(object sender, RoutedEventArgs args)
     {
         if (ShopTab.SaveMagaz.Product.Count > 0)
